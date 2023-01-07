@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/villager/guy1_sitting_scaled_6x_pngcrushed.png" type="Texture" id=1]
+[ext_resource path="res://assets/villager/guy1_sitting-export.png" type="Texture" id=1]
 [ext_resource path="res://VillagerScript.gd" type="Script" id=2]
-[ext_resource path="res://assets/select/select.png" type="Texture" id=3]
+[ext_resource path="res://assets/select/select-export.png" type="Texture" id=3]
+[ext_resource path="res://assets/villager/guy1_walking1-export1.png" type="Texture" id=4]
+[ext_resource path="res://assets/villager/guy1_walking1-export2.png" type="Texture" id=5]
+[ext_resource path="res://assets/villager/guy1_walking1-export3.png" type="Texture" id=6]
+[ext_resource path="res://assets/villager/guy2_sitting-export.png" type="Texture" id=7]
+[ext_resource path="res://assets/villager/guy2_walking1-export2.png" type="Texture" id=8]
+[ext_resource path="res://assets/villager/guy2_walking1-export3.png" type="Texture" id=9]
+[ext_resource path="res://assets/villager/guy2_walking1-export1.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 11.0
@@ -11,7 +18,22 @@ radius = 11.0
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "sitting",
+"name": "sit1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "sit2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk2",
 "speed": 5.0
 } ]
 
@@ -31,4 +53,4 @@ texture = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2, -3 )
 frames = SubResource( 1 )
-animation = "sitting"
+animation = "walk1"

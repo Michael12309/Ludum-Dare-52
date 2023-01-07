@@ -2,16 +2,41 @@ extends KinematicBody2D
 
 
 var selected
+var velocity = Vector2.ZERO
+var speed = 100
+var move_to_pos = Vector2.ZERO
 
+var villager_type
+var walk_animation
+var sit_animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	move_to_pos = position
+	var animation_names = $AnimatedSprite.frames.get_animation_names()
+	print(animation_names)
+	var villager_type = (randi() % 2) + 1
+	walk_animation = "walk" + str(villager_type)
+	sit_animation = "sit" + str(villager_type)
+	$AnimatedSprite.playing = true
 
+func move_to(pos):
+	move_to_pos = pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if position.distance_to(move_to_pos) > 50:
+		velocity = (move_to_pos - position).normalized() * speed
+	else:
+		velocity = Vector2.ZERO
+	
+	if velocity != Vector2.ZERO:
+		$AnimatedSprite.animation = walk_animation
+		$AnimatedSprite.flip_h = velocity.x < 0
+	else:
+		$AnimatedSprite.animation = sit_animation
+	
+	move_and_slide(velocity)
 
 func select():
 	selected = true

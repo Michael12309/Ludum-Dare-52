@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/guy1_sitting_scaled_6x_pngcrushed.png-8dc2d61aa587b6016b0823a1bd3bbe90.stex"
+path="res://.import/guy2_walking1-export2.png-0f598f6f595bfd1440a6428f3a9cee54.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/villager/guy1_sitting_scaled_6x_pngcrushed.png"
-dest_files=[ "res://.import/guy1_sitting_scaled_6x_pngcrushed.png-8dc2d61aa587b6016b0823a1bd3bbe90.stex" ]
+source_file="res://assets/villager/guy2_walking1-export2.png"
+dest_files=[ "res://.import/guy2_walking1-export2.png-0f598f6f595bfd1440a6428f3a9cee54.stex" ]
 
 [params]
 

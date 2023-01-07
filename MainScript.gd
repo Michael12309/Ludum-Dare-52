@@ -8,6 +8,9 @@ var select_rectangle = RectangleShape2D.new()
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
+			for unit in selected:
+				unit.collider.move_to(event.position)
+			
 			dragging = true
 			for unit in selected:
 				unit.collider.deselect()
