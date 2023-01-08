@@ -12,7 +12,10 @@ config_version=4
 
 config/name="Ludum Dare 52"
 run/main_scene="res://Intro.tscn"
-config/icon="res://icon.png"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.0509804, 0.168627, 0.270588, 1 )
 
 [global]
 
