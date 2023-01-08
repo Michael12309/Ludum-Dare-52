@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire-export1.png-e299ec612fdad834773b0730648b7ed3.stex"
+path="res://.import/house-export.png-48e726f31433aecd85a4fefe1d4b1f3e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fire/fire-export1.png"
-dest_files=[ "res://.import/fire-export1.png-e299ec612fdad834773b0730648b7ed3.stex" ]
+source_file="res://assets/house/house-export.png"
+dest_files=[ "res://.import/house-export.png-48e726f31433aecd85a4fefe1d4b1f3e.stex" ]
 
 [params]
 

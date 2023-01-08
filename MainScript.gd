@@ -5,12 +5,20 @@ var selected = []
 var drag_start_pos = Vector2.ZERO
 var select_rectangle = RectangleShape2D.new()
 var villagerPackedScene
+var housePackedScene
 var moving_to = "any"
+
+# entered on startup I dont know why
+var villagers_in_pond = -1
+var villagers_in_trees = -1
+
+var house_num = 0
 
 func _ready():
 	randomize()
 	
 	villagerPackedScene = preload("res://Villager.tscn")
+	housePackedScene = preload("res://House.tscn")
 
 func _on_TreesStaticBody2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
@@ -26,12 +34,10 @@ func _on_TreesStaticBody2d_input_event(viewport, event, shape_idx):
 func _on_PondStaticBody_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
-			print('ressed')
 			for unit in selected:
 				if(unit.collider is KinematicBody2D):
 					var move_to = $PondPath/PathFollow2D
 					move_to.offset = randi()
-					print(move_to.offset)
 					unit.collider.move_to(move_to.position)
 
 func _unhandled_input(event):
@@ -63,17 +69,37 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if dragging:
 			$DrawSelectNode2D.draw(drag_start_pos, event.position)
-	
-	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
-		if event.pressed:
-			var villager = villagerPackedScene.instance()
-			villager.position = $VillagerSpawn.position
-			$YSort.add_child(villager)
-			villager.move_to(Vector2(590, 315))
-			$HUD.add_villager(1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	$HUD.set_food_increase(villagers_in_pond * 3)
+	$HUD.set_wood_increase(villagers_in_trees * 3)
 
 
+func _on_PondArea_body_entered(body):
+	villagers_in_pond += 1
+
+func _on_PondArea_body_exited(body):
+	villagers_in_pond -= 1
+
+func _on_WoodArea_body_entered(body):
+	villagers_in_trees += 1
+
+func _on_WoodArea_body_exited(body):
+	villagers_in_trees -= 1
+
+
+func _on_VillagerArrive_timeout():
+	if randi() % 3 == 0 and $HUD.is_room_for_villager():
+		var villager = villagerPackedScene.instance()
+		villager.position = $VillagerSpawn.position
+		$YSort.add_child(villager)
+		villager.move_to(Vector2(590, 315))
+		$HUD.add_villager(1)
+
+
+func _on_HUD_build_house():
+	house_num += 1
+	if (house_num <= 5):
+		var house = housePackedScene.instance()
+		get_node("YSort/HouseSpawn" + str(house_num)).add_child(house)

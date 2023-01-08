@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/font/monogram.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://themes/button_theme.tres" type="Theme" id=2]
@@ -9,10 +9,14 @@ size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="."]
+[node name="ResourcesLabel" type="Label" parent="."]
 margin_left = 47.0
 margin_top = 436.0
 margin_right = 364.0
@@ -26,14 +30,37 @@ Food          10
 "
 
 [node name="Button" type="Button" parent="."]
-margin_left = 841.0
-margin_top = 506.0
-margin_right = 931.0
-margin_bottom = 526.0
+margin_left = 824.0
+margin_top = 521.0
+margin_right = 960.0
+margin_bottom = 551.0
 theme = ExtResource( 2 )
 text = "Build House"
 
 [node name="ResourceTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ChangeLabel" type="Label" parent="."]
+margin_left = 282.0
+margin_top = 436.0
+margin_right = 521.0
+margin_bottom = 563.0
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "
+
++0/s
++0/s"
+
+[node name="HouseCostLabel" type="Label" parent="."]
+margin_left = 769.0
+margin_top = 479.0
+margin_right = 1007.0
+margin_bottom = 592.0
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "(Requires 20 wood)"
+align = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_ResourceTimer_timeout"]
