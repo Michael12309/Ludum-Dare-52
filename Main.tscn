@@ -1,15 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Villager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScript.gd" type="Script" id=2]
 [ext_resource path="res://DrawSelectNode2DScript.gd" type="Script" id=3]
 [ext_resource path="res://Fire.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/background/background2.png" type="Texture" id=5]
+[ext_resource path="res://assets/background/background3.png" type="Texture" id=5]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
+
+[sub_resource type="GDScript" id=2]
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 653, 171, 0, 0, 0, 0, 689, 197, 0, 0, 0, 0, 726, 201, 0, 0, 0, 0, 743, 202, 0, 0, 0, 0, 791, 212, 0, 0, 0, 0, 800, 235 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 317.176, 119.793, 0, 0, 0, 0, 317.176, 145.96, 0, 0, 0, 0, 320.706, 174.22, 0, 0, 0, 0, 304.824, 204.573, 0, 0, 0, 0, 280.118, 230.74, 0, 0, 0, 0, 246.588, 251.673 )
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+
+[node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
 texture = ExtResource( 5 )
 
@@ -18,38 +33,49 @@ script = ExtResource( 3 )
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Villager" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 452, 234 )
-
-[node name="Villager2" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 408, 286 )
-
-[node name="Villager3" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 462, 290 )
-
-[node name="Villager4" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 571, 228 )
-
-[node name="Villager6" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 581, 284 )
-
-[node name="Villager7" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 677, 227 )
-
-[node name="Villager8" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 633, 279 )
-
-[node name="Villager9" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 687, 283 )
-
-[node name="Villager10" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 499, 349 )
-
-[node name="Villager11" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 455, 401 )
-
-[node name="Villager12" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 509, 405 )
-
 [node name="Fire" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 521, 309 )
+
+[node name="Villager" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 448, 324 )
+
+[node name="VillagerSpawn" type="Node2D" parent="."]
+position = Vector2( 1053, 336 )
+
+[node name="TreesStaticBody2d" type="StaticBody2D" parent="."]
+position = Vector2( 667, 147 )
+input_pickable = true
+script = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TreesStaticBody2d"]
+polygon = PoolVector2Array( 41, 28, 83, 37, 129, 23, 162, 47, 147, 111, 185, 122, 217, 64, 233, 64, 255, 124, 281, 123, 279, -90, 73, -93, 0, -50, 0, 7 )
+
+[node name="WoodCuttingPath" type="Path2D" parent="."]
+position = Vector2( -13.3265, -3.67188 )
+scale = Vector2( 1.02041, 1.01563 )
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="WoodCuttingPath"]
+position = Vector2( 675.806, 187.471 )
+rotation = 0.6255
+offset = 28.12
+
+[node name="PondStaticBody" type="StaticBody2D" parent="."]
+input_pickable = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PondStaticBody"]
+polygon = PoolVector2Array( 286, 145, 292, 172, 261, 215, 171, 254, 93, 255, 37, 208, 37, 175, 56, 153, 63, 99, 90, 54, 151, 52, 192, 54, 251, 38, 313, 40, 326, 60, 317, 77, 286, 101, 272, 123 )
+
+[node name="PondPath" type="Path2D" parent="."]
+position = Vector2( -45.4667, 25.5477 )
+scale = Vector2( 1.13333, 0.955414 )
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PondPath"]
+position = Vector2( 317.176, 119.793 )
+rotation = 1.5708
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[connection signal="input_event" from="TreesStaticBody2d" to="." method="_on_TreesStaticBody2d_input_event"]
+[connection signal="input_event" from="PondStaticBody" to="." method="_on_PondStaticBody_input_event"]

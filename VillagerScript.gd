@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 var max_health = 100
-var health = 0
+var health = max_health
 
-var selected
+var selected = false
 var velocity = Vector2.ZERO
 var speed = 100
 var move_to_pos = Vector2.ZERO
+var last_position = Vector2.ZERO
 
 var villager_type
 var walk_animation
@@ -28,6 +29,9 @@ func move_to(pos):
 func _process(delta):
 	if position.distance_to(move_to_pos) > 25:
 		velocity = (move_to_pos - position).normalized() * speed
+		if (position.distance_to(last_position) < 0.001):
+			move_to_pos = position
+		last_position = position
 	else:
 		velocity = Vector2.ZERO
 	

@@ -45,7 +45,7 @@ bg_color = Color( 0.815686, 0.34902, 0.34902, 1 )
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [node name="Villager" type="KinematicBody2D"]
-position = Vector2( 408, 220 )
+position = Vector2( 515, 309 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
