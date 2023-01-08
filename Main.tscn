@@ -103,10 +103,10 @@ polygon = PoolVector2Array( 362, 82, 335, 128, 343, 202, 308, 253, 263, 286, 190
 polygon = PoolVector2Array( 627, 64, 599, 137, 636, 193, 687, 221, 755, 218, 774, 255, 790, 306, 855, 317, 906, 302, 927, 260, 983, 213, 992, 131, 993, 70, 994, 19, 935, 9, 835, 18, 708, 16 )
 
 [node name="VillagerArrive" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 6.0
 
 [node name="EnemyArrive" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.35
 autostart = true
 
 [node name="ShortenEnemySpawn" type="Timer" parent="."]
@@ -130,7 +130,7 @@ wait_time = 25.0
 autostart = true
 
 [node name="FirstEnemyArrive" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 6.0
 one_shot = true
 autostart = true
 

@@ -74,7 +74,7 @@ func _on_Button_pressed():
 	if (not outro):
 		wood_count -= house_cost
 		house_cost = round(house_cost * 3.8)
-		housing_count += 3
+		housing_count += 2
 		emit_signal("build_house")
 
 
