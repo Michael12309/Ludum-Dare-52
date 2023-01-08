@@ -9,11 +9,13 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
 			for unit in selected:
-				unit.collider.move_to(event.position)
+				if(unit.collider is KinematicBody2D):
+					unit.collider.move_to(event.position)
 			
 			dragging = true
 			for unit in selected:
-				unit.collider.deselect()
+				if(unit.collider is KinematicBody2D):
+					unit.collider.deselect()
 			selected = []
 			drag_start_pos = event.position
 		elif dragging:
@@ -26,7 +28,9 @@ func _unhandled_input(event):
 			query.transform = Transform2D(0, (event.position + drag_start_pos) / 2)
 			selected = space.intersect_shape(query)
 			for unit in selected:
-				unit.collider.select()
+				# todo fix for enemies
+				if(unit.collider is KinematicBody2D):
+					unit.collider.select()
 	if event is InputEventMouseMotion:
 		if dragging:
 			$DrawSelectNode2D.draw(drag_start_pos, event.position)

@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Villager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScript.gd" type="Script" id=2]
 [ext_resource path="res://DrawSelectNode2DScript.gd" type="Script" id=3]
+[ext_resource path="res://Fire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/background/background2.png" type="Texture" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+texture = ExtResource( 5 )
 
 [node name="DrawSelectNode2D" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -13,9 +19,37 @@ script = ExtResource( 3 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Villager" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 452, 234 )
 
 [node name="Villager2" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 534, 267 )
+position = Vector2( 408, 286 )
 
 [node name="Villager3" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 446, 291 )
+position = Vector2( 462, 290 )
+
+[node name="Villager4" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 571, 228 )
+
+[node name="Villager6" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 581, 284 )
+
+[node name="Villager7" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 677, 227 )
+
+[node name="Villager8" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 633, 279 )
+
+[node name="Villager9" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 687, 283 )
+
+[node name="Villager10" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 499, 349 )
+
+[node name="Villager11" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 455, 401 )
+
+[node name="Villager12" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 509, 405 )
+
+[node name="Fire" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 521, 309 )
