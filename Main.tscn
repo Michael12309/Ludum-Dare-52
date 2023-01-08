@@ -110,7 +110,7 @@ wait_time = 0.35
 autostart = true
 
 [node name="ShortenEnemySpawn" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 12.0
 autostart = true
 
 [node name="EnemySpawn1" type="Node2D" parent="."]
@@ -126,12 +126,7 @@ position = Vector2( 1077, 531 )
 position = Vector2( 281, 644 )
 
 [node name="AllowVillagerArrive" type="Timer" parent="."]
-wait_time = 25.0
-autostart = true
-
-[node name="FirstEnemyArrive" type="Timer" parent="."]
-wait_time = 6.0
-one_shot = true
+wait_time = 21.0
 autostart = true
 
 [node name="HoursLived" type="Label" parent="."]
@@ -147,6 +142,11 @@ text = "Hours lived   0"
 wait_time = 3.0
 autostart = true
 
+[node name="FirstEnemyArrive" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
 [connection signal="build_house" from="HUD" to="." method="_on_HUD_build_house"]
 [connection signal="food_death" from="HUD" to="." method="_on_HUD_food_death"]
 [connection signal="freeze_death" from="YSort/Fire" to="." method="_on_Fire_freeze_death"]
@@ -160,5 +160,5 @@ autostart = true
 [connection signal="timeout" from="EnemyArrive" to="." method="_on_EnemyArrive_timeout"]
 [connection signal="timeout" from="ShortenEnemySpawn" to="." method="_on_ShortenEnemySpawn_timeout"]
 [connection signal="timeout" from="AllowVillagerArrive" to="." method="_on_AllowVillagerArrive_timeout"]
-[connection signal="timeout" from="FirstEnemyArrive" to="." method="_on_FirstEnemyArrive_timeout"]
 [connection signal="timeout" from="HoursLivedTimer" to="." method="_on_HoursLivedTimer_timeout"]
+[connection signal="timeout" from="FirstEnemyArrive" to="." method="_on_FirstEnemyArrive_timeout"]
