@@ -14,6 +14,8 @@ var enemyPackedScene
 var villagers_in_pond = -1
 var villagers_in_trees = -1
 
+var enemy_spawn_chance = 30
+
 var house_num = 0
 
 func _ready():
@@ -102,16 +104,23 @@ func _on_VillagerArrive_timeout():
 
 func _on_HUD_build_house():
 	house_num += 1
-	if (house_num <= 5):
+	if (house_num <= 4):
 		var house = housePackedScene.instance()
 		get_node("YSort/HouseSpawn" + str(house_num)).add_child(house)
 
 
 func _on_EnemyArrive_timeout():
-	if randi() % 8 == 0:
+	print('trying', randi() % enemy_spawn_chance)
+	if randi() % enemy_spawn_chance == 0:
 		var enemy = enemyPackedScene.instance()
-		enemy.position = $EnemySpawn.position
+		var loc = get_node("EnemySpawn" + str((randi() % 4) + 1)).position
+		enemy.position = loc
 		$YSort.add_child(enemy)
 		enemy.move_to($YSort/Fire.position)
 
 
+func _on_ShortenEnemySpawn_timeout():
+	enemy_spawn_chance = int(enemy_spawn_chance / 1.2)
+	if (enemy_spawn_chance < 1):
+		enemy_spawn_chance = 1
+	print(enemy_spawn_chance)

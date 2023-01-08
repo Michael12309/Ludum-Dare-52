@@ -17,10 +17,10 @@ font_data = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="ResourcesLabel" type="Label" parent="."]
-margin_left = 47.0
-margin_top = 436.0
-margin_right = 364.0
-margin_bottom = 578.0
+margin_left = 23.0
+margin_top = 460.0
+margin_right = 340.0
+margin_bottom = 602.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Villagers     1
@@ -30,10 +30,10 @@ Food          10
 "
 
 [node name="Button" type="Button" parent="."]
-margin_left = 824.0
-margin_top = 521.0
-margin_right = 960.0
-margin_bottom = 551.0
+margin_left = 832.0
+margin_top = 533.0
+margin_right = 968.0
+margin_bottom = 563.0
 theme = ExtResource( 2 )
 text = "Build House"
 
@@ -41,10 +41,10 @@ text = "Build House"
 autostart = true
 
 [node name="ChangeLabel" type="Label" parent="."]
-margin_left = 282.0
-margin_top = 436.0
-margin_right = 521.0
-margin_bottom = 563.0
+margin_left = 258.0
+margin_top = 460.0
+margin_right = 497.0
+margin_bottom = 587.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "
@@ -53,13 +53,23 @@ text = "
 +0/s"
 
 [node name="HouseCostLabel" type="Label" parent="."]
-margin_left = 769.0
-margin_top = 479.0
-margin_right = 1007.0
-margin_bottom = 592.0
+margin_left = 777.0
+margin_top = 492.0
+margin_right = 1015.0
+margin_bottom = 605.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "(Requires 20 wood)"
+align = 1
+
+[node name="FireHealthLabel" type="Label" parent="."]
+margin_left = 405.0
+margin_top = 508.0
+margin_right = 643.0
+margin_bottom = 621.0
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Flame left"
 align = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

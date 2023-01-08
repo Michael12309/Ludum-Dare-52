@@ -40,19 +40,16 @@ position = Vector2( 521, 309 )
 position = Vector2( 448, 324 )
 
 [node name="HouseSpawn1" type="Node2D" parent="YSort"]
-position = Vector2( 374, 442 )
+position = Vector2( 303, 392 )
 
 [node name="HouseSpawn2" type="Node2D" parent="YSort"]
-position = Vector2( 703, 426 )
+position = Vector2( 724, 399 )
 
 [node name="HouseSpawn3" type="Node2D" parent="YSort"]
-position = Vector2( 479, 538 )
+position = Vector2( 387, 480 )
 
 [node name="HouseSpawn4" type="Node2D" parent="YSort"]
-position = Vector2( 556, 458 )
-
-[node name="HouseSpawn5" type="Node2D" parent="YSort"]
-position = Vector2( 662, 537 )
+position = Vector2( 693, 495 )
 
 [node name="VillagerSpawn" type="Node2D" parent="."]
 position = Vector2( 1053, 336 )
@@ -105,11 +102,24 @@ wait_time = 5.0
 autostart = true
 
 [node name="EnemyArrive" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 0.5
 autostart = true
 
-[node name="EnemySpawn" type="Node2D" parent="."]
-position = Vector2( 514, 658 )
+[node name="ShortenEnemySpawn" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="EnemySpawn1" type="Node2D" parent="."]
+position = Vector2( 521, 639 )
+
+[node name="EnemySpawn2" type="Node2D" parent="."]
+position = Vector2( -96, 384 )
+
+[node name="EnemySpawn3" type="Node2D" parent="."]
+position = Vector2( 1077, 531 )
+
+[node name="EnemySpawn4" type="Node2D" parent="."]
+position = Vector2( 281, 644 )
 
 [connection signal="build_house" from="HUD" to="." method="_on_HUD_build_house"]
 [connection signal="input_event" from="TreesStaticBody2d" to="." method="_on_TreesStaticBody2d_input_event"]
@@ -120,3 +130,4 @@ position = Vector2( 514, 658 )
 [connection signal="body_exited" from="WoodArea" to="." method="_on_WoodArea_body_exited"]
 [connection signal="timeout" from="VillagerArrive" to="." method="_on_VillagerArrive_timeout"]
 [connection signal="timeout" from="EnemyArrive" to="." method="_on_EnemyArrive_timeout"]
+[connection signal="timeout" from="ShortenEnemySpawn" to="." method="_on_ShortenEnemySpawn_timeout"]

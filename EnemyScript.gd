@@ -4,7 +4,7 @@ var max_health = 100
 var health = max_health
 
 var velocity = Vector2.ZERO
-var speed = 100
+var speed = 60
 var move_to_pos = Vector2.ZERO
 
 var taking_damage_stack = 0
