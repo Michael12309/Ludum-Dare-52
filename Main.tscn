@@ -104,6 +104,13 @@ polygon = PoolVector2Array( 627, 64, 599, 137, 636, 193, 687, 221, 755, 218, 774
 wait_time = 5.0
 autostart = true
 
+[node name="EnemyArrive" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="EnemySpawn" type="Node2D" parent="."]
+position = Vector2( 514, 658 )
+
 [connection signal="build_house" from="HUD" to="." method="_on_HUD_build_house"]
 [connection signal="input_event" from="TreesStaticBody2d" to="." method="_on_TreesStaticBody2d_input_event"]
 [connection signal="input_event" from="PondStaticBody" to="." method="_on_PondStaticBody_input_event"]
@@ -112,3 +119,4 @@ autostart = true
 [connection signal="body_entered" from="WoodArea" to="." method="_on_WoodArea_body_entered"]
 [connection signal="body_exited" from="WoodArea" to="." method="_on_WoodArea_body_exited"]
 [connection signal="timeout" from="VillagerArrive" to="." method="_on_VillagerArrive_timeout"]
+[connection signal="timeout" from="EnemyArrive" to="." method="_on_EnemyArrive_timeout"]

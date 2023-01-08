@@ -4,9 +4,11 @@ var dragging = false
 var selected = []
 var drag_start_pos = Vector2.ZERO
 var select_rectangle = RectangleShape2D.new()
+var moving_to = "any"
+
 var villagerPackedScene
 var housePackedScene
-var moving_to = "any"
+var enemyPackedScene
 
 # entered on startup I dont know why
 var villagers_in_pond = -1
@@ -19,13 +21,14 @@ func _ready():
 	
 	villagerPackedScene = preload("res://Villager.tscn")
 	housePackedScene = preload("res://House.tscn")
+	enemyPackedScene = preload("res://Enemy.tscn")
 
 func _on_TreesStaticBody2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		# I don't know why this works
 		if event.pressed:
 			for unit in selected:
-				if(unit.collider is KinematicBody2D):
+				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
 					var move_to = $WoodCuttingPath/PathFollow2D
 					move_to.offset = randi()
 					unit.collider.move_to(move_to.position)
@@ -35,7 +38,7 @@ func _on_PondStaticBody_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
 			for unit in selected:
-				if(unit.collider is KinematicBody2D):
+				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
 					var move_to = $PondPath/PathFollow2D
 					move_to.offset = randi()
 					unit.collider.move_to(move_to.position)
@@ -43,15 +46,12 @@ func _on_PondStaticBody_input_event(viewport, event, shape_idx):
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
-			# todo only add to selected if its a villager
 			for unit in selected:
-				if(unit.collider is KinematicBody2D):
+				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
 					unit.collider.move_to(event.position)
+					unit.collider.deselect()
 			
 			dragging = true
-			for unit in selected:
-				if(unit.collider is KinematicBody2D):
-					unit.collider.deselect()
 			drag_start_pos = event.position
 		elif dragging:
 			dragging = false
@@ -61,11 +61,13 @@ func _unhandled_input(event):
 			var query = Physics2DShapeQueryParameters.new()
 			query.set_shape(select_rectangle)
 			query.transform = Transform2D(0, (event.position + drag_start_pos) / 2)
-			selected = space.intersect_shape(query)
-			for unit in selected:
-				# todo fix so you can't select enemies
-				if(unit.collider is KinematicBody2D):
+			var selected_bodies = space.intersect_shape(query)
+			selected = []
+			for unit in selected_bodies:
+				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
 					unit.collider.select()
+					selected.append(unit)
+					
 	if event is InputEventMouseMotion:
 		if dragging:
 			$DrawSelectNode2D.draw(drag_start_pos, event.position)
@@ -103,3 +105,13 @@ func _on_HUD_build_house():
 	if (house_num <= 5):
 		var house = housePackedScene.instance()
 		get_node("YSort/HouseSpawn" + str(house_num)).add_child(house)
+
+
+func _on_EnemyArrive_timeout():
+	if randi() % 8 == 0:
+		var enemy = enemyPackedScene.instance()
+		enemy.position = $EnemySpawn.position
+		$YSort.add_child(enemy)
+		enemy.move_to($YSort/Fire.position)
+
+

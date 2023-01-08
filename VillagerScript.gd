@@ -9,6 +9,8 @@ var speed = 100
 var move_to_pos = Vector2.ZERO
 var last_position = Vector2.ZERO
 
+var heal_amount = 5
+
 var villager_type
 var walk_animation
 var sit_animation
@@ -46,7 +48,7 @@ func _process(delta):
 	# todo move somewhere probably
 	if health < max_health:
 		$HealthBar.show()
-		health += 10.0 * delta
+		health += heal_amount * delta
 	else:
 		$HealthBar.hide()
 	

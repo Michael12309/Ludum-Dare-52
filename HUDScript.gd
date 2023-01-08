@@ -7,7 +7,7 @@ var wood_increase = 0
 var food_count = 20
 var food_increase = 0
 
-var house_cost = 20
+var house_cost = 30
 
 signal build_house
 
@@ -63,6 +63,6 @@ func _process(delta):
 
 func _on_Button_pressed():
 	wood_count -= house_cost
-	house_cost = round(house_cost * 3.8)
+	house_cost = round(house_cost * 4.2)
 	housing_count += 2
 	emit_signal("build_house")
