@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Villager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScript.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Fire.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/background/background3.png" type="Texture" id=5]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/font/monogram.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="GDScript" id=2]
 
@@ -18,6 +19,10 @@ _data = {
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 317.176, 119.793, 0, 0, 0, 0, 317.176, 145.96, 0, 0, 0, 0, 320.706, 174.22, 0, 0, 0, 0, 314.023, 185.407, 0, 0, 0, 0, 304.824, 204.573, 0, 0, 0, 0, 280.118, 230.74, 0, 0, 0, 0, 246.588, 251.673, 0, 0, 0, 0, 220.118, 264.233, 0, 0, 0, 0, 185.706, 267.373 )
 }
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 7 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -98,8 +103,7 @@ polygon = PoolVector2Array( 362, 82, 335, 128, 343, 202, 308, 253, 263, 286, 190
 polygon = PoolVector2Array( 627, 64, 599, 137, 636, 193, 687, 221, 755, 218, 774, 255, 790, 306, 855, 317, 906, 302, 927, 260, 983, 213, 992, 131, 993, 70, 994, 19, 935, 9, 835, 18, 708, 16 )
 
 [node name="VillagerArrive" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
+wait_time = 3.0
 
 [node name="EnemyArrive" type="Timer" parent="."]
 wait_time = 0.5
@@ -121,7 +125,31 @@ position = Vector2( 1077, 531 )
 [node name="EnemySpawn4" type="Node2D" parent="."]
 position = Vector2( 281, 644 )
 
+[node name="AllowVillagerArrive" type="Timer" parent="."]
+wait_time = 25.0
+autostart = true
+
+[node name="FirstEnemyArrive" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="HoursLived" type="Label" parent="."]
+margin_left = 821.0
+margin_top = 8.0
+margin_right = 1032.0
+margin_bottom = 121.0
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Hours lived   0"
+
+[node name="HoursLivedTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="build_house" from="HUD" to="." method="_on_HUD_build_house"]
+[connection signal="food_death" from="HUD" to="." method="_on_HUD_food_death"]
+[connection signal="freeze_death" from="YSort/Fire" to="." method="_on_Fire_freeze_death"]
 [connection signal="input_event" from="TreesStaticBody2d" to="." method="_on_TreesStaticBody2d_input_event"]
 [connection signal="input_event" from="PondStaticBody" to="." method="_on_PondStaticBody_input_event"]
 [connection signal="body_entered" from="PondArea" to="." method="_on_PondArea_body_entered"]
@@ -131,3 +159,6 @@ position = Vector2( 281, 644 )
 [connection signal="timeout" from="VillagerArrive" to="." method="_on_VillagerArrive_timeout"]
 [connection signal="timeout" from="EnemyArrive" to="." method="_on_EnemyArrive_timeout"]
 [connection signal="timeout" from="ShortenEnemySpawn" to="." method="_on_ShortenEnemySpawn_timeout"]
+[connection signal="timeout" from="AllowVillagerArrive" to="." method="_on_AllowVillagerArrive_timeout"]
+[connection signal="timeout" from="FirstEnemyArrive" to="." method="_on_FirstEnemyArrive_timeout"]
+[connection signal="timeout" from="HoursLivedTimer" to="." method="_on_HoursLivedTimer_timeout"]

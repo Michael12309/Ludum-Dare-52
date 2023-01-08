@@ -14,9 +14,11 @@ var enemyPackedScene
 var villagers_in_pond = -1
 var villagers_in_trees = -1
 
-var enemy_spawn_chance = 30
+var enemy_spawn_chance = 26
 
 var house_num = 0
+
+var hours_lived = 1
 
 func _ready():
 	randomize()
@@ -109,18 +111,42 @@ func _on_HUD_build_house():
 		get_node("YSort/HouseSpawn" + str(house_num)).add_child(house)
 
 
+func spawn_enemy():
+	var enemy = enemyPackedScene.instance()
+	var loc = get_node("EnemySpawn" + str((randi() % 4) + 1)).position
+	enemy.position = loc
+	$YSort.add_child(enemy)
+	enemy.move_to($YSort/Fire.position)
+
 func _on_EnemyArrive_timeout():
-	print('trying', randi() % enemy_spawn_chance)
 	if randi() % enemy_spawn_chance == 0:
-		var enemy = enemyPackedScene.instance()
-		var loc = get_node("EnemySpawn" + str((randi() % 4) + 1)).position
-		enemy.position = loc
-		$YSort.add_child(enemy)
-		enemy.move_to($YSort/Fire.position)
+		spawn_enemy()
 
 
 func _on_ShortenEnemySpawn_timeout():
-	enemy_spawn_chance = int(enemy_spawn_chance / 1.2)
+	enemy_spawn_chance -= 1
 	if (enemy_spawn_chance < 1):
 		enemy_spawn_chance = 1
-	print(enemy_spawn_chance)
+
+
+func _on_AllowVillagerArrive_timeout():
+	$VillagerArrive.start()
+
+
+func _on_FirstEnemyArrive_timeout():
+	spawn_enemy()
+
+
+func _on_HoursLivedTimer_timeout():
+	hours_lived += 1
+	$HoursLived.text = "Hours Lived   " + str(hours_lived)
+
+
+func _on_HUD_food_death():
+	$HoursLivedTimer.stop()
+	$HUD.death("starvation", hours_lived)
+
+
+func _on_Fire_freeze_death():
+	$HoursLivedTimer.stop()
+	$HUD.death("freezing", hours_lived)

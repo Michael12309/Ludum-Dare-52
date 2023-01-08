@@ -72,5 +72,36 @@ custom_fonts/font = SubResource( 2 )
 text = "Flame left"
 align = 1
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_left = -25.0
+margin_top = -27.0
+margin_right = 1071.0
+margin_bottom = 629.0
+color = Color( 0.0509804, 0.168627, 0.270588, 1 )
+
+[node name="DeathLabel" type="Label" parent="."]
+visible = false
+margin_left = 310.0
+margin_top = 191.0
+margin_right = 735.0
+margin_bottom = 304.0
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Your village died.
+Cause of death: freezing
+Hours lived: 0"
+align = 1
+
+[node name="RestartButton" type="Button" parent="."]
+visible = false
+margin_left = 440.0
+margin_top = 307.0
+margin_right = 608.0
+margin_bottom = 340.0
+theme = ExtResource( 2 )
+text = "Restart"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_ResourceTimer_timeout"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
