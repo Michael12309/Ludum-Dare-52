@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-var villager_count = 1
+var villager_count = 2
 var housing_count = 2
 var wood_count = 0
 var wood_increase = 0
-var food_count = 25
+var food_count = 40
 var food_increase = 0
 
 var house_cost = 55
@@ -73,7 +73,7 @@ func _process(delta):
 func _on_Button_pressed():
 	if (not outro):
 		wood_count -= house_cost
-		house_cost = round(house_cost * 3.2)
+		house_cost = round(house_cost * 4.1)
 		housing_count += 2
 		emit_signal("build_house")
 

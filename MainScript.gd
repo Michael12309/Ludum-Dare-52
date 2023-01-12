@@ -10,9 +10,8 @@ var villagerPackedScene
 var housePackedScene
 var enemyPackedScene
 
-# entered on startup I dont know why
-var villagers_in_pond = -1
-var villagers_in_trees = -1
+var villagers_in_pond = 0
+var villagers_in_trees = 0
 
 var enemy_spawn_chance = 26
 
@@ -28,7 +27,7 @@ func _ready():
 	enemyPackedScene = preload("res://Enemy.tscn")
 
 func _on_TreesStaticBody2d_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		# I don't know why this works
 		if event.pressed:
 			for unit in selected:
@@ -39,7 +38,7 @@ func _on_TreesStaticBody2d_input_event(viewport, event, shape_idx):
 
 
 func _on_PondStaticBody_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		if event.pressed:
 			for unit in selected:
 				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
@@ -48,13 +47,16 @@ func _on_PondStaticBody_input_event(viewport, event, shape_idx):
 					unit.collider.move_to(move_to.position)
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		if event.pressed:
 			for unit in selected:
 				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
 					unit.collider.move_to(event.position)
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		if event.pressed:
+			for unit in selected:
+				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
 					unit.collider.deselect()
-			
 			dragging = true
 			drag_start_pos = event.position
 		elif dragging:
@@ -83,17 +85,24 @@ func _process(delta):
 
 
 func _on_PondArea_body_entered(body):
-	villagers_in_pond += 1
+	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+		villagers_in_pond += 1
+		body.set_icon("fishing")
 
 func _on_PondArea_body_exited(body):
-	villagers_in_pond -= 1
+	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+		villagers_in_pond -= 1
+		body.set_icon("none")
 
 func _on_WoodArea_body_entered(body):
-	villagers_in_trees += 1
+	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+		villagers_in_trees += 1
+		body.set_icon("cutting")
 
 func _on_WoodArea_body_exited(body):
-	villagers_in_trees -= 1
-
+	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+		villagers_in_trees -= 1
+		body.set_icon("none")
 
 func _on_VillagerArrive_timeout():
 	if randi() % 3 == 0 and $HUD.is_room_for_villager():
@@ -103,13 +112,11 @@ func _on_VillagerArrive_timeout():
 		villager.move_to(Vector2(590, 315))
 		$HUD.add_villager(1)
 
-
 func _on_HUD_build_house():
 	house_num += 1
 	if (house_num <= 4):
 		var house = housePackedScene.instance()
 		get_node("YSort/HouseSpawn" + str(house_num)).add_child(house)
-
 
 func spawn_enemy():
 	var enemy = enemyPackedScene.instance()
@@ -122,30 +129,18 @@ func _on_EnemyArrive_timeout():
 	if randi() % enemy_spawn_chance == 0:
 		spawn_enemy()
 
-
 func _on_ShortenEnemySpawn_timeout():
 	enemy_spawn_chance -= 1
 	if (enemy_spawn_chance < 1):
 		enemy_spawn_chance = 1
 
-
-func _on_AllowVillagerArrive_timeout():
-	$VillagerArrive.start()
-
-
-func _on_FirstEnemyArrive_timeout():
-	spawn_enemy()
-
-
 func _on_HoursLivedTimer_timeout():
 	hours_lived += 1
 	$HoursLived.text = "Hours Lived   " + str(hours_lived)
 
-
 func _on_HUD_food_death():
 	$HoursLivedTimer.stop()
 	$HUD.death("starvation", hours_lived)
-
 
 func _on_Fire_freeze_death():
 	$HoursLivedTimer.stop()

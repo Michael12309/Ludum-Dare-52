@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/villager/guy1_sitting-export.png" type="Texture" id=1]
 [ext_resource path="res://VillagerScript.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/villager/guy2_walking1-export3.png" type="Texture" id=9]
 [ext_resource path="res://assets/villager/guy2_walking1-export1.png" type="Texture" id=10]
 [ext_resource path="res://themes/progress_bar_theme.tres" type="Theme" id=11]
+[ext_resource path="res://assets/icons/fishing.png" type="Texture" id=12]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 6.0
@@ -52,9 +53,15 @@ script = ExtResource( 2 )
 position = Vector2( -2, 4 )
 shape = SubResource( 5 )
 
+[node name="IconSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -35 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 12 )
+
 [node name="SelectedSprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 1, -25 )
+position = Vector2( -3.99999, 22 )
 texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -64,6 +71,7 @@ frames = SubResource( 1 )
 animation = "walk1"
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 margin_left = -16.0
 margin_top = 18.0
 margin_right = 254.0

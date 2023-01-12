@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+export var initially_flipped = false
+
 var max_health = 100
 var health = max_health
 
@@ -15,6 +17,10 @@ var villager_type
 var walk_animation
 var sit_animation
 
+var fishingIcon = preload("res://assets/icons/fishing.png")
+var cuttingIcon = preload("res://assets/icons/cutting.png")
+var activity = "none"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	move_to_pos = position
@@ -22,8 +28,9 @@ func _ready():
 	var villager_type = (randi() % 2) + 1
 	walk_animation = "walk" + str(villager_type)
 	sit_animation = "sit" + str(villager_type)
+	$AnimatedSprite.flip_h = initially_flipped
 	$AnimatedSprite.playing = true
-
+	
 func move_to(pos):
 	move_to_pos = pos
 
@@ -53,6 +60,16 @@ func _process(delta):
 		$HealthBar.hide()
 	
 	$HealthBar.value = health
+
+func set_icon(icon):
+	if (icon == "fishing"):
+		$IconSprite.show()
+		$IconSprite.texture = fishingIcon
+	elif (icon == "cutting"):
+		$IconSprite.show()
+		$IconSprite.texture = cuttingIcon
+	else:
+		$IconSprite.hide()
 
 func select():
 	selected = true
