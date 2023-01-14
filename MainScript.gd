@@ -26,26 +26,6 @@ func _ready():
 	housePackedScene = preload("res://House.tscn")
 	enemyPackedScene = preload("res://Enemy.tscn")
 
-func _on_TreesStaticBody2d_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
-		# I don't know why this works
-		if event.pressed:
-			for unit in selected:
-				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
-					var move_to = $WoodCuttingPath/PathFollow2D
-					move_to.offset = randi()
-					unit.collider.move_to(move_to.position)
-
-
-func _on_PondStaticBody_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
-		if event.pressed:
-			for unit in selected:
-				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
-					var move_to = $PondPath/PathFollow2D
-					move_to.offset = randi()
-					unit.collider.move_to(move_to.position)
-
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		if event.pressed:

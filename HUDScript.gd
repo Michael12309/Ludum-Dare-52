@@ -7,7 +7,7 @@ var wood_increase = 0
 var food_count = 40
 var food_increase = 0
 
-var house_cost = 55
+var house_cost = 0
 
 var outro = false
 
