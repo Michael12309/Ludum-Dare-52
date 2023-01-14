@@ -3,24 +3,26 @@ extends KinematicBody2D
 var max_health = 100
 var health = max_health
 
+onready var navigation_agent = $NavigationAgent2D
 var velocity = Vector2.ZERO
 var speed = 60
-var move_to_pos = Vector2.ZERO
 
 var taking_damage_stack = 0
 var damage_taken = 40
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	move_to_pos = position
+	navigation_agent.set_target_location(position)
 
 func move_to(pos):
-	move_to_pos = pos
+	navigation_agent.set_target_location(pos)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if position.distance_to(move_to_pos) > 25:
-		velocity = (move_to_pos - position).normalized() * speed
+	if (not navigation_agent.is_navigation_finished() and \
+	   position.distance_to(navigation_agent.get_target_location()) > 25):
+		velocity = position.direction_to(navigation_agent.get_next_location()) * speed
+		navigation_agent.set_velocity(velocity)
 	else:
 		velocity = Vector2.ZERO
 

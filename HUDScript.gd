@@ -4,10 +4,10 @@ var villager_count = 2
 var housing_count = 2
 var wood_count = 0
 var wood_increase = 0
-var food_count = 40
+var food_count = 50
 var food_increase = 0
 
-var house_cost = 0
+var house_cost = 50
 
 var outro = false
 

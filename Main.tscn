@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Villager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScript.gd" type="Script" id=2]
@@ -7,6 +7,19 @@
 [ext_resource path="res://assets/background/background3.png" type="Texture" id=5]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/font/monogram.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/click/click2.png" type="Texture" id=8]
+[ext_resource path="res://assets/click/click1.png" type="Texture" id=9]
+[ext_resource path="res://assets/click/click4.png" type="Texture" id=10]
+[ext_resource path="res://assets/click/click3.png" type="Texture" id=11]
+[ext_resource path="res://assets/click/click5.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "click",
+"speed": 11.0
+} ]
 
 [sub_resource type="DynamicFont" id=5]
 size = 32
@@ -25,6 +38,13 @@ script = ExtResource( 2 )
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
 texture = ExtResource( 5 )
+
+[node name="ClickAnimation" type="AnimatedSprite" parent="."]
+position = Vector2( -43, -31 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 7 )
+animation = "click"
+frame = 1
 
 [node name="DrawSelectNode2D" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -73,7 +93,7 @@ position = Vector2( 3, 0 )
 polygon = PoolVector2Array( 502, 43, 479, 109, 521, 147, 584, 138, 582, 59, 547, 19 )
 
 [node name="VillagerArrive" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 3.0
 autostart = true
 
 [node name="EnemyArrive" type="Timer" parent="."]

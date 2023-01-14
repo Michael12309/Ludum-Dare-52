@@ -29,6 +29,10 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		if event.pressed:
+			if selected.size() > 0:
+				$ClickAnimation.frame = 0
+				$ClickAnimation.play()
+				$ClickAnimation.position = event.position
 			for unit in selected:
 				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
 					unit.collider.move_to(event.position)
@@ -85,7 +89,7 @@ func _on_WoodArea_body_exited(body):
 		body.set_icon("none")
 
 func _on_VillagerArrive_timeout():
-	if randi() % 3 == 0 and $HUD.is_room_for_villager():
+	if randi() % 2 == 0 and $HUD.is_room_for_villager():
 		var villager = villagerPackedScene.instance()
 		villager.position = $VillagerSpawn.position
 		$YSort.add_child(villager)
