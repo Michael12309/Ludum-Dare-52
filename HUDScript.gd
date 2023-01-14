@@ -7,10 +7,12 @@ var wood_increase = 0
 var food_count = 50
 var food_increase = 0
 
-var house_cost = 50
+var stoke_cost = 4
+var house_cost = 70
 
 var outro = false
 
+signal stoke_fire
 signal build_house
 
 signal food_death
@@ -57,25 +59,41 @@ func _on_ResourceTimer_timeout():
 		("+" if wood_increase > 0 else "") + str(wood_increase) + "/s\n" + \
 		("+" if food_increase - villager_count > 0 else "") + str(food_increase - villager_count) + "/s\n"
 		
+		$StokeFireCostLabel.text = "(Requires " + str(stoke_cost) + " wood)"
 		$HouseCostLabel.text = "(Requires " + str(house_cost) + " wood)"
 
 
 func _process(delta):
 	if (not outro):
 		if (wood_count < house_cost):
-			$Button.disabled = true
+			$BuildHouseButton.disabled = true
 		else:
-			$Button.disabled = false
+			$BuildHouseButton.disabled = false
+			
+		if (wood_count < stoke_cost):
+			$StokeFireButton.disabled = true
+		else:
+			$StokeFireButton.disabled = false
 		
 		if (food_count < 1):
 			emit_signal("food_death")
 
-func _on_Button_pressed():
+
+func _on_BuildHouseButton_pressed():
 	if (not outro):
 		wood_count -= house_cost
-		house_cost = round(house_cost * 4.1)
+		house_cost = round(house_cost * 3.8)
 		housing_count += 2
+		$HouseCostLabel.text = "(Requires " + str(house_cost) + " wood)"
 		emit_signal("build_house")
+
+
+func _on_StokeFireButton_pressed():
+	if (not outro):
+		wood_count -= stoke_cost
+		stoke_cost = round(stoke_cost * 1.8)
+		$StokeFireCostLabel.text = "(Requires " + str(stoke_cost) + " wood)"
+		emit_signal("stoke_fire")
 
 
 func alive():
@@ -83,7 +101,8 @@ func alive():
 
 func death(cause, hours):
 	$ResourcesLabel.hide()
-	$Button.hide()
+	$StokeFireButton.hide()
+	$BuildHouseButton.hide()
 	$ChangeLabel.hide()
 	$HouseCostLabel.hide()
 	$FireHealthLabel.hide()
@@ -98,3 +117,4 @@ func death(cause, hours):
 
 func _on_RestartButton_pressed():
 	get_tree().change_scene("res://Main.tscn")
+

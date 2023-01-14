@@ -29,7 +29,35 @@ Wood          0
 Food          10
 "
 
-[node name="Button" type="Button" parent="."]
+[node name="StokeFireCostLabel" type="Label" parent="."]
+margin_left = 777.0
+margin_top = 404.0
+margin_right = 1015.0
+margin_bottom = 517.0
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "(Requires 20 wood)"
+align = 1
+
+[node name="StokeFireButton" type="Button" parent="."]
+margin_left = 832.0
+margin_top = 445.0
+margin_right = 968.0
+margin_bottom = 475.0
+theme = ExtResource( 2 )
+text = "Stoke Fire"
+
+[node name="HouseCostLabel" type="Label" parent="."]
+margin_left = 777.0
+margin_top = 492.0
+margin_right = 1015.0
+margin_bottom = 605.0
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "(Requires 20 wood)"
+align = 1
+
+[node name="BuildHouseButton" type="Button" parent="."]
 margin_left = 832.0
 margin_top = 533.0
 margin_right = 968.0
@@ -51,16 +79,6 @@ text = "
 
 +0/s
 +0/s"
-
-[node name="HouseCostLabel" type="Label" parent="."]
-margin_left = 777.0
-margin_top = 492.0
-margin_right = 1015.0
-margin_bottom = 605.0
-custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
-custom_fonts/font = SubResource( 2 )
-text = "(Requires 20 wood)"
-align = 1
 
 [node name="FireHealthLabel" type="Label" parent="."]
 margin_left = 405.0
@@ -102,6 +120,7 @@ margin_bottom = 340.0
 theme = ExtResource( 2 )
 text = "Restart"
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="StokeFireButton" to="." method="_on_StokeFireButton_pressed"]
+[connection signal="pressed" from="BuildHouseButton" to="." method="_on_BuildHouseButton_pressed"]
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_ResourceTimer_timeout"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]

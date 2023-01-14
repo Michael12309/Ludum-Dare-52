@@ -13,6 +13,8 @@ signal freeze_death
 func _process(delta):
 	if (health < max_health):
 		health += health_regen * delta
+	else:
+		health = max_health
 	
 	health -= taking_damage_stack * damage_taken * delta
 	
@@ -21,6 +23,8 @@ func _process(delta):
 	if (health <= 0):
 		emit_signal("freeze_death")
 
+func add_health(amount):
+	health += amount
 
 func _on_Area2D_body_entered(body):
 	if (body.name.begins_with("Enemy") or body.name.begins_with("@Enemy")):

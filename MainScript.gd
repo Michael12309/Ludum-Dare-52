@@ -13,7 +13,7 @@ var enemyPackedScene
 var villagers_in_pond = 0
 var villagers_in_trees = 0
 
-var enemy_spawn_chance = 26
+var enemy_spawn_chance = 29
 
 var house_num = 0
 
@@ -25,6 +25,9 @@ func _ready():
 	villagerPackedScene = preload("res://Villager.tscn")
 	housePackedScene = preload("res://House.tscn")
 	enemyPackedScene = preload("res://Enemy.tscn")
+	
+func isVillager(body):
+	return body.name.begins_with("Villager") or body.name.begins_with("@Villager")
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
@@ -33,13 +36,15 @@ func _unhandled_input(event):
 				$ClickAnimation.frame = 0
 				$ClickAnimation.play()
 				$ClickAnimation.position = event.position
+				$SelectAudioStreamPlayer.pitch_scale = (float(randi() % 3) / 2) + 1.5
+				$SelectAudioStreamPlayer.play()
 			for unit in selected:
-				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
+				if isVillager(unit.collider):
 					unit.collider.move_to(event.position)
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
 			for unit in selected:
-				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
+				if isVillager(unit.collider):
 					unit.collider.deselect()
 			dragging = true
 			drag_start_pos = event.position
@@ -54,7 +59,7 @@ func _unhandled_input(event):
 			var selected_bodies = space.intersect_shape(query)
 			selected = []
 			for unit in selected_bodies:
-				if(unit.collider.name.begins_with("Villager") or unit.collider.name.begins_with("@Villager")):
+				if isVillager(unit.collider):
 					unit.collider.select()
 					selected.append(unit)
 					
@@ -66,25 +71,41 @@ func _unhandled_input(event):
 func _process(delta):
 	$HUD.set_food_increase(villagers_in_pond * 3)
 	$HUD.set_wood_increase(villagers_in_trees * 3)
+	
+func _physics_process(delta):
+	if $FireAudioStreamPlayer.playing == false:
+		$FireAudioStreamPlayer.play()
+	if $ChoppingAudioStreamPlayer.playing == false:
+		$ChoppingAudioStreamPlayer.play()
+	if $WaterAudioStreamPlayer.playing == false:
+		$WaterAudioStreamPlayer.play()
 
+func closestVillagerTo(pos):
+	var closest = 99999
+	var closest_villager
+	for villager in get_tree().get_nodes_in_group("villagers"):
+		if villager.position.distance_to(pos) < closest:
+			closest = villager.position.distance_to(pos)
+			closest_villager = villager
+	return [closest_villager, closest]
 
 func _on_PondArea_body_entered(body):
-	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+	if isVillager(body):
 		villagers_in_pond += 1
 		body.set_icon("fishing")
 
 func _on_PondArea_body_exited(body):
-	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+	if isVillager(body):
 		villagers_in_pond -= 1
 		body.set_icon("none")
 
 func _on_WoodArea_body_entered(body):
-	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+	if isVillager(body):
 		villagers_in_trees += 1
 		body.set_icon("cutting")
 
 func _on_WoodArea_body_exited(body):
-	if(body.name.begins_with("Villager") or body.name.begins_with("@Villager")):
+	if isVillager(body):
 		villagers_in_trees -= 1
 		body.set_icon("none")
 
@@ -102,12 +123,18 @@ func _on_HUD_build_house():
 		var house = housePackedScene.instance()
 		get_node("YSort/HouseSpawn" + str(house_num)).add_child(house)
 
+func _on_HUD_stoke_fire():
+	$YSort/Fire.add_health(35)
+
 func spawn_enemy():
 	var enemy = enemyPackedScene.instance()
 	var loc = get_node("EnemySpawn" + str((randi() % 4) + 1)).position
 	enemy.position = loc
 	$YSort.add_child(enemy)
-	enemy.move_to($YSort/Fire.position)
+	var move_to_pos = $YSort/Fire.position
+	move_to_pos.x += (randi() % 20) - 10
+	move_to_pos.y += 10
+	enemy.move_to(move_to_pos)
 
 func _on_EnemyArrive_timeout():
 	if randi() % enemy_spawn_chance == 0:
@@ -129,3 +156,21 @@ func _on_HUD_food_death():
 func _on_Fire_freeze_death():
 	$HoursLivedTimer.stop()
 	$HUD.death("freezing", hours_lived)
+
+
+func _on_AudioTimer_timeout():
+	# this is expensive, so I'm doing it in a timer rather than every frame
+	var closestDistanceFromFire = closestVillagerTo($YSort/Fire.position)[1]
+	# 60 to give a consistant area around fire before it falls off
+	closestDistanceFromFire = clamp(closestDistanceFromFire, 70, 500)
+	$FireAudioStreamPlayer.volume_db = range_lerp(closestDistanceFromFire, 70, 500, -8, -45)
+	
+	var closestDistanceFromWater = closestVillagerTo($WaterAudioSource.position)[1]
+	# 60 to give a consistant area around fire before it falls off
+	closestDistanceFromWater = clamp(closestDistanceFromWater, 0, 600)
+	$WaterAudioStreamPlayer.volume_db = range_lerp(closestDistanceFromWater, 0, 600, 0, -90)
+	
+	if villagers_in_trees >= 1:
+		$ChoppingAudioStreamPlayer.volume_db = -21
+	else:
+		$ChoppingAudioStreamPlayer.volume_db = -100

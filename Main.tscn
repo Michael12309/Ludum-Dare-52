@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Villager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScript.gd" type="Script" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://assets/click/click4.png" type="Texture" id=10]
 [ext_resource path="res://assets/click/click3.png" type="Texture" id=11]
 [ext_resource path="res://assets/click/click5.png" type="Texture" id=12]
+[ext_resource path="res://assets/sounds/fire.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/chopping.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sounds/water.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sounds/select.wav" type="AudioStream" id=17]
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -93,7 +97,7 @@ position = Vector2( 3, 0 )
 polygon = PoolVector2Array( 502, 43, 479, 109, 521, 147, 584, 138, 582, 59, 547, 19 )
 
 [node name="VillagerArrive" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 autostart = true
 
 [node name="EnemyArrive" type="Timer" parent="."]
@@ -101,7 +105,7 @@ wait_time = 0.35
 autostart = true
 
 [node name="ShortenEnemySpawn" type="Timer" parent="."]
-wait_time = 12.0
+wait_time = 11.0
 autostart = true
 
 [node name="EnemySpawn1" type="Node2D" parent="."]
@@ -133,8 +137,36 @@ autostart = true
 visible = false
 navpoly = SubResource( 6 )
 
+[node name="FireAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -80.0
+pitch_scale = 1.36
+autoplay = true
+
+[node name="ChoppingAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -80.0
+autoplay = true
+
+[node name="WaterAudioSource" type="Node2D" parent="."]
+position = Vector2( 167, 150 )
+
+[node name="WaterAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -80.0
+autoplay = true
+
+[node name="AudioTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="SelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -20.0
+
 [connection signal="build_house" from="HUD" to="." method="_on_HUD_build_house"]
 [connection signal="food_death" from="HUD" to="." method="_on_HUD_food_death"]
+[connection signal="stoke_fire" from="HUD" to="." method="_on_HUD_stoke_fire"]
 [connection signal="freeze_death" from="YSort/Fire" to="." method="_on_Fire_freeze_death"]
 [connection signal="body_entered" from="PondArea" to="." method="_on_PondArea_body_entered"]
 [connection signal="body_exited" from="PondArea" to="." method="_on_PondArea_body_exited"]
@@ -144,3 +176,4 @@ navpoly = SubResource( 6 )
 [connection signal="timeout" from="EnemyArrive" to="." method="_on_EnemyArrive_timeout"]
 [connection signal="timeout" from="ShortenEnemySpawn" to="." method="_on_ShortenEnemySpawn_timeout"]
 [connection signal="timeout" from="HoursLivedTimer" to="." method="_on_HoursLivedTimer_timeout"]
+[connection signal="timeout" from="AudioTimer" to="." method="_on_AudioTimer_timeout"]

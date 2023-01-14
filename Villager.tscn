@@ -46,7 +46,7 @@ bg_color = Color( 0.815686, 0.34902, 0.34902, 1 )
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[node name="Villager" type="KinematicBody2D"]
+[node name="Villager" type="KinematicBody2D" groups=["villagers"]]
 position = Vector2( 515, 309 )
 script = ExtResource( 2 )
 
@@ -56,13 +56,13 @@ shape = SubResource( 5 )
 
 [node name="IconSprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 0, -35 )
+position = Vector2( 0, -39 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
 
 [node name="SelectedSprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( -3.99999, 22 )
+position = Vector2( -3.99999, 25 )
 texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
