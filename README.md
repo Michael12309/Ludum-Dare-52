@@ -1,6 +1,6 @@
 # Ludum-Dare-52
 
-Submission for Ludum Dare 52
+Submission for Ludum Dare 52 Compo.  The Ludum Dare version of the game was made in 48 hours.
 
 ![image](https://user-images.githubusercontent.com/40968057/212787135-8aab0fe9-be66-47c2-a831-e43c4dc05df7.png)
 
