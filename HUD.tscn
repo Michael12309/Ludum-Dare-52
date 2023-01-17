@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/font/monogram.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://themes/button_theme.tres" type="Theme" id=2]
 [ext_resource path="res://HUDScript.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/button-click.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -119,6 +120,11 @@ margin_right = 608.0
 margin_bottom = 340.0
 theme = ExtResource( 2 )
 text = "Restart"
+
+[node name="ButtonClickAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0
+pitch_scale = 0.91
 
 [connection signal="pressed" from="StokeFireButton" to="." method="_on_StokeFireButton_pressed"]
 [connection signal="pressed" from="BuildHouseButton" to="." method="_on_BuildHouseButton_pressed"]

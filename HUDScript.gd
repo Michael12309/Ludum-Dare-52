@@ -81,6 +81,7 @@ func _process(delta):
 
 func _on_BuildHouseButton_pressed():
 	if (not outro):
+		$ButtonClickAudioStreamPlayer.play()
 		wood_count -= house_cost
 		house_cost = round(house_cost * 3.8)
 		housing_count += 2
@@ -90,6 +91,7 @@ func _on_BuildHouseButton_pressed():
 
 func _on_StokeFireButton_pressed():
 	if (not outro):
+		$ButtonClickAudioStreamPlayer.play()
 		wood_count -= stoke_cost
 		stoke_cost = round(stoke_cost * 1.8)
 		$StokeFireCostLabel.text = "(Requires " + str(stoke_cost) + " wood)"
