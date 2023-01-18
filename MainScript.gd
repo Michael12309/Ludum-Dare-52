@@ -62,7 +62,7 @@ func _unhandled_input(event):
 				if isVillager(unit.collider):
 					unit.collider.select()
 					selected.append(unit)
-					
+
 	if event is InputEventMouseMotion:
 		if dragging:
 			$DrawSelectNode2D.draw(drag_start_pos, event.position)
@@ -71,7 +71,7 @@ func _unhandled_input(event):
 func _process(delta):
 	$HUD.set_food_increase(villagers_in_pond * 3)
 	$HUD.set_wood_increase(villagers_in_trees * 3)
-	
+
 func _physics_process(delta):
 	if $FireAudioStreamPlayer.playing == false:
 		$FireAudioStreamPlayer.play()

@@ -70,7 +70,6 @@ func _on_ResourceTimer_timeout():
 		else:
 			$WarningLabel.hide()
 
-
 func _process(delta):
 	if (not outro):
 		if (wood_count < house_cost):
