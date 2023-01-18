@@ -38,11 +38,11 @@ frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -2, 1 )
 shape = SubResource( 4 )
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-visible = false
 margin_left = -14.0
 margin_top = 23.0
 margin_right = 256.0
@@ -51,11 +51,13 @@ rect_scale = Vector2( 0.1, 0.1 )
 theme = ExtResource( 4 )
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
+max_value = 109.0
 step = 10.0
-value = 100.0
+value = 109.0
 percent_visible = false
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -2, 1 )

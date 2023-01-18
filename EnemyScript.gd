@@ -32,13 +32,14 @@ func _process(delta):
 	
 	health -= taking_damage_stack * damage_taken * delta
 	
-	# todo move somewhere probably
+	# not really necessary since it'll be invisible but probably good anyway
 	if health < max_health:
 		$HealthBar.show()
 	else:
 		$HealthBar.hide()
 	
-	$HealthBar.value = health
+	# step is 10, should only disappear if health == 0
+	$HealthBar.value = health + 9
 	
 	if (health <= 0):
 		queue_free()
