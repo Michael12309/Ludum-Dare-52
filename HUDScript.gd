@@ -61,6 +61,14 @@ func _on_ResourceTimer_timeout():
 		
 		$StokeFireCostLabel.text = "(Requires " + str(stoke_cost) + " wood)"
 		$HouseCostLabel.text = "(Requires " + str(house_cost) + " wood)"
+		
+		# losing food and
+		# 12 ticks (seconds) from death
+		if food_increase - villager_count < 0 and \
+		   food_count + ((food_increase - villager_count) * 12) <= 0:
+			$WarningLabel.show()
+		else:
+			$WarningLabel.hide()
 
 
 func _process(delta):
