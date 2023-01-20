@@ -19,6 +19,8 @@ boot_splash/bg_color=Color( 0.0509804, 0.168627, 0.270588, 1 )
 
 [display]
 
+window/size/width=1280
+window/size/height=720
 window/size/resizable=false
 
 [global]

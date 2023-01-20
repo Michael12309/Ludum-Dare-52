@@ -133,7 +133,7 @@ func spawn_enemy():
 	$YSort.add_child(enemy)
 	var move_to_pos = $YSort/Fire.position
 	move_to_pos.x += (randi() % 20) - 10
-	move_to_pos.y += 10
+	move_to_pos.y += 30
 	enemy.move_to(move_to_pos)
 
 func _on_EnemyArrive_timeout():

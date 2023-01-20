@@ -90,7 +90,7 @@ func _on_BuildHouseButton_pressed():
 	if (not outro):
 		$ButtonClickAudioStreamPlayer.play()
 		wood_count -= house_cost
-		house_cost = round(house_cost * 3.8)
+		house_cost = round(house_cost * 3.7)
 		housing_count += 2
 		$HouseCostLabel.text = "(Requires " + str(house_cost) + " wood)"
 		emit_signal("build_house")
