@@ -67,6 +67,7 @@ func _on_ResourceTimer_timeout():
 		if food_increase - villager_count < 0 and \
 		   food_count + ((food_increase - villager_count) * 12) <= 0:
 			$WarningLabel.show()
+			$WarningAudioStreamPlayer.play()
 		else:
 			$WarningLabel.hide()
 
@@ -90,7 +91,7 @@ func _on_BuildHouseButton_pressed():
 	if (not outro):
 		$ButtonClickAudioStreamPlayer.play()
 		wood_count -= house_cost
-		house_cost = round(house_cost * 3.7)
+		house_cost = round(house_cost * 3.8)
 		housing_count += 2
 		$HouseCostLabel.text = "(Requires " + str(house_cost) + " wood)"
 		emit_signal("build_house")

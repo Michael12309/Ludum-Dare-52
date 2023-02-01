@@ -5,7 +5,7 @@ var health = max_health
 
 onready var navigation_agent = $NavigationAgent2D
 var velocity = Vector2.ZERO
-var speed = 55
+var speed = 60
 
 var taking_damage_stack = 0
 var damage_taken = 40

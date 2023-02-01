@@ -59,7 +59,6 @@ func _unhandled_input(event):
 			var selected_bodies = space.intersect_shape(query)
 			selected = []
 			for unit in selected_bodies:
-				if isVillager(unit.collider):
 					unit.collider.select()
 					selected.append(unit)
 
@@ -133,7 +132,7 @@ func spawn_enemy():
 	$YSort.add_child(enemy)
 	var move_to_pos = $YSort/Fire.position
 	move_to_pos.x += (randi() % 20) - 10
-	move_to_pos.y += 30
+	move_to_pos.y += 10
 	enemy.move_to(move_to_pos)
 
 func _on_EnemyArrive_timeout():

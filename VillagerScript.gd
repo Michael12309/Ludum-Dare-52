@@ -7,7 +7,7 @@ var health = max_health
 
 var selected = false
 var velocity = Vector2.ZERO
-var speed = 110
+var speed = 100
 var last_position = Vector2.ZERO
 onready var navigation_agent = $NavigationAgent2D
 var can_be_stuck = false

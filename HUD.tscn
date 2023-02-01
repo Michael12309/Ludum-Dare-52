@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/font/monogram.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://themes/button_theme.tres" type="Theme" id=2]
 [ext_resource path="res://HUDScript.gd" type="Script" id=3]
 [ext_resource path="res://assets/sounds/button-click.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/warning.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -29,9 +30,9 @@ text = "! Low on Fish"
 
 [node name="ResourcesLabel" type="Label" parent="."]
 margin_left = 23.0
-margin_top = 580.0
+margin_top = 460.0
 margin_right = 340.0
-margin_bottom = 722.0
+margin_bottom = 602.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Villagers     1
@@ -41,38 +42,38 @@ Food          10
 "
 
 [node name="StokeFireCostLabel" type="Label" parent="."]
-margin_left = 1032.0
-margin_top = 536.0
-margin_right = 1270.0
-margin_bottom = 649.0
+margin_left = 777.0
+margin_top = 404.0
+margin_right = 1015.0
+margin_bottom = 517.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "(Requires 20 wood)"
 align = 1
 
 [node name="StokeFireButton" type="Button" parent="."]
-margin_left = 1087.0
-margin_top = 577.0
-margin_right = 1223.0
-margin_bottom = 607.0
+margin_left = 832.0
+margin_top = 445.0
+margin_right = 968.0
+margin_bottom = 475.0
 theme = ExtResource( 2 )
 text = "Stoke Fire"
 
 [node name="HouseCostLabel" type="Label" parent="."]
-margin_left = 1032.0
-margin_top = 624.0
-margin_right = 1270.0
-margin_bottom = 737.0
+margin_left = 777.0
+margin_top = 492.0
+margin_right = 1015.0
+margin_bottom = 605.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "(Requires 20 wood)"
 align = 1
 
 [node name="BuildHouseButton" type="Button" parent="."]
-margin_left = 1087.0
-margin_top = 665.0
-margin_right = 1223.0
-margin_bottom = 695.0
+margin_left = 832.0
+margin_top = 533.0
+margin_right = 968.0
+margin_bottom = 563.0
 theme = ExtResource( 2 )
 text = "Build House"
 
@@ -81,9 +82,9 @@ autostart = true
 
 [node name="ChangeLabel" type="Label" parent="."]
 margin_left = 258.0
-margin_top = 580.0
+margin_top = 460.0
 margin_right = 497.0
-margin_bottom = 707.0
+margin_bottom = 587.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "
@@ -92,10 +93,10 @@ text = "
 +0/s"
 
 [node name="FireHealthLabel" type="Label" parent="."]
-margin_left = 536.0
-margin_top = 667.0
-margin_right = 774.0
-margin_bottom = 780.0
+margin_left = 405.0
+margin_top = 508.0
+margin_right = 643.0
+margin_bottom = 621.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Flame left"
@@ -105,20 +106,16 @@ align = 1
 visible = false
 margin_left = -25.0
 margin_top = -27.0
-margin_right = 1362.0
-margin_bottom = 758.0
+margin_right = 1071.0
+margin_bottom = 629.0
 color = Color( 0.0509804, 0.168627, 0.270588, 1 )
 
 [node name="DeathLabel" type="Label" parent="."]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -212.5
-margin_top = -112.5
-margin_right = 212.5
-margin_bottom = 0.5
+margin_left = 310.0
+margin_top = 191.0
+margin_right = 735.0
+margin_bottom = 304.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Your village died.
@@ -128,14 +125,10 @@ align = 1
 
 [node name="RestartButton" type="Button" parent="."]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -84.0
-margin_top = 39.5
-margin_right = 84.0
-margin_bottom = 72.5
+margin_left = 440.0
+margin_top = 307.0
+margin_right = 608.0
+margin_bottom = 340.0
 theme = ExtResource( 2 )
 text = "Restart"
 
@@ -143,6 +136,11 @@ text = "Restart"
 stream = ExtResource( 4 )
 volume_db = -20.0
 pitch_scale = 0.91
+
+[node name="WarningAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -21.155
+pitch_scale = 0.73
 
 [connection signal="pressed" from="StokeFireButton" to="." method="_on_StokeFireButton_pressed"]
 [connection signal="pressed" from="BuildHouseButton" to="." method="_on_BuildHouseButton_pressed"]

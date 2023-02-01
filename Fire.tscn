@@ -18,8 +18,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 56.9999
-height = 56.0
+radius = 52.0
+height = 42.0
 
 [node name="Fire" type="Node2D"]
 position = Vector2( 486, 263 )
@@ -28,16 +28,16 @@ script = ExtResource( 8 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 pause_mode = 2
 position = Vector2( 3, -13 )
-scale = Vector2( 0.75, 0.75 )
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 frame = 1
 playing = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-margin_left = -99.0
-margin_top = 277.0
-margin_right = 99.0
-margin_bottom = 291.0
+margin_left = -79.0
+margin_top = 244.0
+margin_right = 86.0
+margin_bottom = 258.0
 theme = ExtResource( 7 )
 value = 100.0
 percent_visible = false
@@ -45,7 +45,7 @@ percent_visible = false
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1, 14 )
+position = Vector2( 1, 7 )
 rotation = 1.5708
 shape = SubResource( 3 )
 

@@ -4,7 +4,7 @@
 [ext_resource path="res://MainScript.gd" type="Script" id=2]
 [ext_resource path="res://DrawSelectNode2DScript.gd" type="Script" id=3]
 [ext_resource path="res://Fire.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/background/background8.png" type="Texture" id=5]
+[ext_resource path="res://assets/background/background3.png" type="Texture" id=5]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/font/monogram.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://assets/click/click2.png" type="Texture" id=8]
@@ -35,9 +35,9 @@ size = 32
 font_data = ExtResource( 7 )
 
 [sub_resource type="NavigationPolygon" id=6]
-vertices = PoolVector2Array( 1096, 326, 1174, 332, 693, 419, 723, 398, 1009, 330, 1244, 213, 1292, -5, 1301, 731, 1240, 268, 907, 136, 874, 154, 864, 141, 847, 110, 937, 52, 1228, 167, 1209, 63, 1037, 94, 1013, 144, 986, 97, 1182, 49, 1133, 108, 1093, 50, 362, 76, 816, 114, 812, 129, 385, 113, 330, 96, 870, 266, 936, 259, 934, 303, 713, 356, 817, 143, 353, 221, 337, 175, 383, 166, 1025, 295, 1027, 265, 1088, 273, 1179, 275, -12, 732, 950, 330, 854, 243, 688, 339, 333, 117, 1060, 102, 957, 52, 196, 58, 153, 77, 135, 56, -4, -8, 357, 250, 350, 276, 629, 339, 348, 40, 830, 103, 597, 351, 582, 379, 315, 321, 243, 350, 591, 409, 276, 35, 253, 58, 109, 65, 121, 105, 112, 121, 94, 145, 74, 175, 63, 205, 62, 263, 82, 303, 130, 343, 181, 352, 634, 425 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 10, 11, 12, 13 ), PoolIntArray( 6, 5, 14, 15 ), PoolIntArray( 16, 17, 18 ), PoolIntArray( 19, 20, 21 ), PoolIntArray( 22, 23, 24, 25, 26 ), PoolIntArray( 27, 28, 29, 3, 30 ), PoolIntArray( 31, 32, 33, 34, 24 ), PoolIntArray( 35, 36, 37, 0 ), PoolIntArray( 34, 25, 24 ), PoolIntArray( 38, 8, 7, 1 ), PoolIntArray( 1, 7, 39, 2 ), PoolIntArray( 4, 35, 0 ), PoolIntArray( 40, 4, 3 ), PoolIntArray( 29, 40, 3 ), PoolIntArray( 41, 27, 30, 42 ), PoolIntArray( 25, 43, 26 ), PoolIntArray( 21, 44, 16, 45 ), PoolIntArray( 46, 47, 48 ), PoolIntArray( 6, 15, 19 ), PoolIntArray( 49, 6, 19, 21 ), PoolIntArray( 16, 18, 45 ), PoolIntArray( 49, 21, 45, 13 ), PoolIntArray( 50, 32, 31 ), PoolIntArray( 51, 50, 31, 11, 10, 41, 42, 52 ), PoolIntArray( 23, 22, 53, 54 ), PoolIntArray( 13, 12, 54 ), PoolIntArray( 49, 13, 54, 53 ), PoolIntArray( 51, 52, 55 ), PoolIntArray( 51, 55, 56, 57 ), PoolIntArray( 58, 57, 56, 59, 39 ), PoolIntArray( 49, 53, 60 ), PoolIntArray( 49, 60, 61, 46, 48 ), PoolIntArray( 49, 48, 62 ), PoolIntArray( 49, 62, 63, 64, 65 ), PoolIntArray( 49, 65, 66 ), PoolIntArray( 49, 66, 67 ), PoolIntArray( 39, 49, 67, 68 ), PoolIntArray( 39, 68, 69 ), PoolIntArray( 39, 69, 70 ), PoolIntArray( 39, 70, 71 ), PoolIntArray( 39, 71, 58 ), PoolIntArray( 39, 59, 72 ), PoolIntArray( 39, 72, 2 ) ]
-outlines = [ PoolVector2Array( 1292, -5, 1301, 731, -12, 732, -4, -8 ), PoolVector2Array( 350, 276, 357, 250, 353, 221, 337, 175, 383, 166, 385, 113, 333, 117, 330, 96, 362, 76, 348, 40, 276, 35, 253, 58, 196, 58, 153, 77, 135, 56, 109, 65, 121, 105, 112, 121, 94, 145, 74, 175, 63, 205, 62, 263, 82, 303, 130, 343, 181, 352, 243, 350, 315, 321 ), PoolVector2Array( 629, 339, 597, 351, 582, 379, 591, 409, 634, 425, 693, 419, 723, 398, 713, 356, 688, 339 ), PoolVector2Array( 816, 114, 812, 129, 817, 143, 864, 141, 847, 110, 830, 103 ), PoolVector2Array( 874, 154, 854, 243, 870, 266, 936, 259, 934, 303, 950, 330, 1009, 330, 1025, 295, 1027, 265, 1088, 273, 1096, 326, 1174, 332, 1179, 275, 1240, 268, 1244, 213, 1228, 167, 1209, 63, 1182, 49, 1133, 108, 1093, 50, 1060, 102, 1037, 94, 1013, 144, 986, 97, 957, 52, 937, 52, 907, 136 ) ]
+vertices = PoolVector2Array( 563, 322, 815, 272, 858, 282, 552, 341, 962, 105, 1028, -4, 1029, 603, 344, 53, 330, 29, 757, 45, 731, 63, 548, 65, 535, 65, 927, 153, 915, 202, 893, 61, 883, 90, 862, 52, 675, 81, 656, 118, 566, 99, 930, 43, -4, -8, 881, 230, -7, 603, 520, 350, 563, 301, 803, 239, 719, 89, 693, 75, 830, 180, 848, 163, 854, 169, 834, 195, 556, 125, 661, 158, 536, 262, 799, 181, 811, 212, 749, 187, 314, 159, 295, 118, 333, 87, 825, 59, 809, 83, 795, 81, 782, 55, 771, 171, 698, 177, 522, 121, 512, 263, 492, 339, 482, 316, 486, 294, 522, 97, 294, 216, 241, 254, 157, 276, 104, 276, 51, 253, 20, 218, 19, 171, 44, 117, 37, 144, 43, 75, 72, 37, 185, 34, 121, 36, 236, 25, 297, 21 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6 ), PoolIntArray( 7, 8, 9, 10, 11, 12 ), PoolIntArray( 13, 4, 6, 14 ), PoolIntArray( 15, 16, 17 ), PoolIntArray( 18, 19, 20, 11 ), PoolIntArray( 5, 4, 21 ), PoolIntArray( 22, 5, 21, 17, 9 ), PoolIntArray( 23, 14, 6, 2 ), PoolIntArray( 3, 2, 6, 24, 25 ), PoolIntArray( 1, 0, 26, 27 ), PoolIntArray( 10, 28, 29 ), PoolIntArray( 30, 31, 32, 33 ), PoolIntArray( 34, 20, 19, 35, 36 ), PoolIntArray( 37, 30, 33, 38, 36, 39 ), PoolIntArray( 40, 41, 42, 12 ), PoolIntArray( 27, 26, 36, 38 ), PoolIntArray( 43, 44, 45, 46 ), PoolIntArray( 39, 47, 37 ), PoolIntArray( 48, 39, 36 ), PoolIntArray( 35, 48, 36 ), PoolIntArray( 49, 34, 36, 50 ), PoolIntArray( 51, 25, 24 ), PoolIntArray( 52, 51, 24 ), PoolIntArray( 53, 52, 24 ), PoolIntArray( 21, 15, 17 ), PoolIntArray( 49, 50, 53, 24, 54 ), PoolIntArray( 29, 18, 11 ), PoolIntArray( 55, 12, 54, 24, 56 ), PoolIntArray( 10, 29, 11 ), PoolIntArray( 42, 7, 12 ), PoolIntArray( 55, 40, 12 ), PoolIntArray( 57, 56, 24 ), PoolIntArray( 58, 57, 24 ), PoolIntArray( 59, 58, 24 ), PoolIntArray( 60, 59, 24 ), PoolIntArray( 60, 24, 22, 61 ), PoolIntArray( 62, 63, 61, 22, 64 ), PoolIntArray( 65, 64, 22 ), PoolIntArray( 66, 67, 65, 22, 68 ), PoolIntArray( 43, 46, 9, 17 ), PoolIntArray( 69, 68, 22 ), PoolIntArray( 69, 22, 9 ), PoolIntArray( 69, 9, 8 ) ]
+outlines = [ PoolVector2Array( 1028, -4, 1029, 603, -7, 603, -4, -8 ), PoolVector2Array( 294, 216, 314, 159, 295, 118, 333, 87, 344, 53, 330, 29, 297, 21, 236, 25, 185, 34, 121, 36, 72, 37, 43, 75, 44, 117, 37, 144, 19, 171, 20, 218, 51, 253, 104, 276, 157, 276, 241, 254 ), PoolVector2Array( 512, 263, 486, 294, 482, 316, 492, 339, 520, 350, 552, 341, 563, 322, 563, 301, 536, 262 ), PoolVector2Array( 535, 65, 522, 97, 522, 121, 556, 125, 566, 99, 548, 65 ), PoolVector2Array( 661, 158, 698, 177, 749, 187, 771, 171, 799, 181, 830, 180, 848, 163, 854, 169, 834, 195, 811, 212, 803, 239, 815, 272, 858, 282, 881, 230, 915, 202, 927, 153, 962, 105, 930, 43, 893, 61, 883, 90, 862, 52, 825, 59, 809, 83, 795, 81, 782, 55, 757, 45, 731, 63, 719, 89, 693, 75, 675, 81, 656, 118 ) ]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -78,7 +78,7 @@ align = 1
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 642, 366 )
+position = Vector2( 512, 300 )
 texture = ExtResource( 5 )
 
 [node name="ClickAnimation" type="AnimatedSprite" parent="."]
@@ -94,44 +94,45 @@ script = ExtResource( 3 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Fire" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 652, 362 )
+position = Vector2( 521, 309 )
 
 [node name="Villager" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 532, 388 )
+position = Vector2( 450, 337 )
 
 [node name="Villager2" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 779, 362 )
+position = Vector2( 599, 312 )
 initially_flipped = true
 
 [node name="HouseSpawn1" type="Node2D" parent="YSort"]
-position = Vector2( 427, 463 )
+position = Vector2( 303, 392 )
 
 [node name="HouseSpawn2" type="Node2D" parent="YSort"]
-position = Vector2( 871, 467 )
+position = Vector2( 724, 399 )
 
 [node name="HouseSpawn3" type="Node2D" parent="YSort"]
-position = Vector2( 518, 553 )
+position = Vector2( 387, 480 )
 
 [node name="HouseSpawn4" type="Node2D" parent="YSort"]
-position = Vector2( 821, 559 )
+position = Vector2( 693, 495 )
 
 [node name="VillagerSpawn" type="Node2D" parent="."]
-position = Vector2( 1373, 416 )
+position = Vector2( 1053, 336 )
 
 [node name="PondArea" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PondArea"]
-position = Vector2( 40, 62 )
-polygon = PoolVector2Array( 359, 96, 341, 152, 340, 208, 311, 281, 245, 315, 176, 329, 72, 319, 23, 289, -6, 257, -13, 206, 3, 100, 61, 25, 116, -25, 232, -33, 327, -9, 345, 29, 361, 66 )
+polygon = PoolVector2Array( 366, 84, 337, 122, 337, 192, 308, 247, 255, 287, 182, 300, 97, 304, 43, 291, 16, 267, -7, 221, 15, 128, 61, 25, 152, 15, 218, -4, 316, -1, 359, 7, 377, 63 )
 
 [node name="WoodArea" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WoodArea"]
-position = Vector2( 105.643, 40.6202 )
-scale = Vector2( 1.17114, 1.19597 )
-polygon = PoolVector2Array( 652.664, 64.7002, 609.97, 143.297, 641.563, 201.827, 680.841, 219.386, 710.727, 256.176, 785.868, 258.684, 816.607, 210.188, 841.369, 254.504, 890.894, 264.537, 932.734, 256.176, 946.396, 212.697, 1001.9, 160.856, 989.943, 97.3096, 985.674, 19.5487, 890.894, -5.53543, 782.452, 22.0571, 690.234, 0.317535 )
+polygon = PoolVector2Array( 639, 65, 624, 148, 650, 202, 715, 218, 766, 225, 775, 248, 776, 296, 865, 314, 890, 279, 910, 248, 950, 237, 983, 139, 983, 74, 982, 33, 934, 19, 834, 25, 712, 23 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="WoodArea"]
+position = Vector2( 3, 0 )
+polygon = PoolVector2Array( 502, 43, 479, 109, 521, 147, 584, 138, 582, 59, 547, 19 )
 
 [node name="VillagerArrive" type="Timer" parent="."]
 wait_time = 5.0
@@ -146,22 +147,22 @@ wait_time = 11.0
 autostart = true
 
 [node name="EnemySpawn1" type="Node2D" parent="."]
-position = Vector2( 692, 765 )
+position = Vector2( 521, 639 )
 
 [node name="EnemySpawn2" type="Node2D" parent="."]
-position = Vector2( -96, 456 )
+position = Vector2( -96, 384 )
 
 [node name="EnemySpawn3" type="Node2D" parent="."]
-position = Vector2( 1380, 582 )
+position = Vector2( 1077, 531 )
 
 [node name="EnemySpawn4" type="Node2D" parent="."]
-position = Vector2( -63, 780 )
+position = Vector2( 281, 644 )
 
 [node name="HoursLived" type="Label" parent="."]
-margin_left = 1071.0
-margin_top = 20.0
-margin_right = 1282.0
-margin_bottom = 133.0
+margin_left = 821.0
+margin_top = 8.0
+margin_right = 1032.0
+margin_bottom = 121.0
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "Hours lived   0"
