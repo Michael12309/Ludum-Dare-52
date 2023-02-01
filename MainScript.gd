@@ -59,6 +59,7 @@ func _unhandled_input(event):
 			var selected_bodies = space.intersect_shape(query)
 			selected = []
 			for unit in selected_bodies:
+				if isVillager(unit.collider):
 					unit.collider.select()
 					selected.append(unit)
 
