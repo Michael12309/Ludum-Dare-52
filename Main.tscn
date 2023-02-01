@@ -171,6 +171,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 6 )
 
 [node name="FireAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
