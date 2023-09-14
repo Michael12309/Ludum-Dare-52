@@ -6,7 +6,7 @@ Submission for Ludum Dare 52 Compo.  The Ludum Dare version of the game was made
 
 Game can be played here: https://most-likely.itch.io/a-small-village-post-jam
 
-Ludum Dare submission can be played here: https://most-likely.itch.io/a-small-village
+Ludum Dare submission (older version) can be played here: https://most-likely.itch.io/a-small-village
 
 Ludum Dare page here: https://ldjam.com/events/ludum-dare/52/a-small-village
 
